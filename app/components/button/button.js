@@ -5,7 +5,7 @@ import { TouchableHighlight, Text, View } from 'react-native';
 import styles from './styles';
 
 const SButton = ({ text, onPress }) => (
-    <TouchableHighlight style={styles.container} onPress={onPress} underlayColor='grey' >
+    <TouchableHighlight style={styles.container} onPress={onPress} underlayColor='#ba68c8' >
         <Text style={styles.buttonText}> {text} </Text>
     </TouchableHighlight>
 );

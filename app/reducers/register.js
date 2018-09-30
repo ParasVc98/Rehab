@@ -2,8 +2,10 @@ const initialState = {
     username: 'username',
     password: 'password',
     email: 'email-ID',
+    token: '',
+    error: null,
 
-    poison: 'None',
+    poison: '                                 None                                  ',
     doseSize: 'Enter dose size',
     doseType: 'pieces',
     noOfDoses: 'Enter number of doses taken in a day',
@@ -72,6 +74,16 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 timeType: action.time,
+            }
+        case 'TOKEN_RESULT':
+            return {
+                ...state,
+                token: action.result.token,
+            }
+        case 'TOKEN_ERROR':
+            return {
+                ...state,
+                error: action.error,
             }
         default:
             return state;

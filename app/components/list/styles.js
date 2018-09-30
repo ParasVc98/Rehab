@@ -28,7 +28,7 @@ export default StyleSheet.create({
         justifyContent: 'center',
     },
     iconVisible: {
-        backgroundColor: '#af2b07',
+        backgroundColor: '#7b1fa2',
         borderRadius: 15,
         width: 30,
         height: 30,

@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { Container } from '../components/container';
 import { InputText } from '../components/input';
 import { SButton } from '../components/button';
-import { KeyboardAvoidingView, Text } from 'react-native';
+import { KeyboardAvoidingView, Text, View } from 'react-native';
 
-import { DoseSizeChange, NoOfDosesChange, PriceOfDoseChange, TimePeriodChange } from '../actions/register';
+import { DoseSizeChange, NoOfDosesChange, PriceOfDoseChange, TimePeriodChange, register, submit } from '../actions/register';
 
 
 class Register2 extends Component {
@@ -56,33 +56,117 @@ class Register2 extends Component {
         navigation.navigate('TimeList', { title: 'Time Unit' });
     };
 
-    handleRegisterPress = () => { };
-
+    handleRegisterPress = () => {
+        this.props.dispatch(register());
+        if (this.props.token === "") { }
+        else {
+            this.props.navigation.navigate('SignedIn');
+        }
+    };
+    handleSubmitPress = () => {
+        this.props.dispatch(submit());
+    };
 
     render() {
         return (
             <Container>
                 <KeyboardAvoidingView behavior="padding">
 
-                    <Text>What is your poison?</Text>
-                    <SButton text={this.props.poison} onPress={this.handlePoisonPress} />
+                    <Text style={{ fontSize: 25, fontWeight: 'bold', textAlign: 'center', color: 'white' }}>What is your poison?</Text>
+                    <Text style={{ fontSize: 15, fontWeight: 'normal', textAlign: 'center', color: 'white' }}>(Fill the form corresponding to each and press submit)</Text>
 
-                    <InputText value={this.props.doseSize} onChangeText={(text) => this.handleDoseSizeChange(text)} />
-                    <SButton text={this.props.doseType} onPress={this.handleDosePress} />
+                    <View
+                        style={{
+                            marginTop: '3%',
+                            flexDirection: 'row',
+                            justifyContent: 'center',
+                        }}>
+                        <SButton text={this.props.poison} onPress={this.handlePoisonPress} />
+                    </View>
+                    <View style={{
+                        marginTop: '2%',
+                        marginBottom: '2%',
+                        marginLeft: '5%',
+                        marginRight: '5%',
+                    }}>
+                        <View
+                            style={{
+                                flexDirection: 'row',
+                                justifyContent: 'space-between',
 
-                    <InputText value={this.props.noOfDoses} onChangeText={(text) => this.handleNoOfDosesChange(text)} />
+                            }}>
+                            <View style={{
+                                width: '70%',
+                            }}>
+                                <InputText value={this.props.doseSize} onChangeText={(text) => this.handleDoseSizeChange(text)} />
+                            </View>
+                            <View style={{
+                                width: '30%',
+                            }}>
+                                <SButton text={this.props.doseType} onPress={this.handleDosePress} />
+                            </View>
+                        </View>
+                        <View style={{
+                            width: '70%',
+                        }}>
+                            <InputText value={this.props.noOfDoses} onChangeText={(text) => this.handleNoOfDosesChange(text)} />
+                        </View>
+                        <View
+                            style={{
+                                flexDirection: 'row',
+                                justifyContent: 'space-between',
 
-                    <InputText value={this.props.priceOfDose} onChangeText={(text) => this.handlePriceOfDoseChange(text)} />
-                    <SButton text={this.props.currency} onPress={this.handleCurrencyPress} />
+                            }}>
+                            <View style={{
+                                width: '70%',
+                            }}>
+                                <InputText value={this.props.priceOfDose} onChangeText={(text) => this.handlePriceOfDoseChange(text)} />
+                            </View>
+                            <View style={{
+                                width: '30%',
+                            }}>
+                                <SButton text={this.props.currency} onPress={this.handleCurrencyPress} />
+                            </View>
+                        </View>
+                        <View
+                            style={{
+                                flexDirection: 'row',
+                                justifyContent: 'space-between',
 
-                    <InputText value={this.props.timePeriod} onChangeText={(text) => this.handleTimePeriodChange(text)} />
-                    <SButton text={this.props.timeType} onPress={this.handleTimePress} />
+                            }}>
+                            <View style={{
+                                width: '70%',
+                            }}>
+                                <InputText value={this.props.timePeriod} onChangeText={(text) => this.handleTimePeriodChange(text)} />
+                            </View>
+                            <View style={{
+                                width: '30%',
+                            }}>
+                                <SButton text={this.props.timeType} onPress={this.handleTimePress} />
+                            </View>
+                        </View>
+                    </View>
+                    <View
+                        style={{
+                            flexDirection: 'row',
+                            justifyContent: 'center',
+                            marginBottom: '7%',
 
-                    <SButton text="Register" onPress={this.handleRegisterPress} />
 
+                        }}>
+                        <SButton text="                                 Submit                              " onPress={this.handleSubmitPress} />
+                    </View>
+                    <View
+                        style={{
+                            flexDirection: 'row',
+                            justifyContent: 'center',
+
+                        }}>
+                        <SButton text="Register" onPress={this.handleRegisterPress} />
+                    </View>
                 </KeyboardAvoidingView>
 
-            </Container>
+            </Container >
         );
     }
 }

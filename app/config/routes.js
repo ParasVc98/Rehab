@@ -1,5 +1,5 @@
 import { StatusBar } from 'react-native';
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator, createBottomTabNavigator, createSwitchNavigator } from 'react-navigation';
 import Login from '../screens/login';
 import Register1 from '../screens/register1';
 import Register2 from '../screens/register2';
@@ -7,12 +7,14 @@ import CurrencyList from '../screens/currencies';
 import DoseList from '../screens/doses';
 import PoisonList from '../screens/poisons';
 import TimeList from '../screens/times';
+import Feed from '../screens/feed';
+import Stats from '../screens/stats';
+import FontAwesome from 'react-native-fontawesome';
+
 
 const Register2Stack = createStackNavigator({
     Register2: {
         screen: Register2,
-
-
     },
     CurrencyList: {
         screen: CurrencyList,
@@ -44,7 +46,7 @@ const Register2Stack = createStackNavigator({
         headerMode: 'none',
     }
 );
-export default createStackNavigator({
+export const SignedOut = createStackNavigator({
     Login: {
         screen: Login,
         navigationOptions: {
@@ -55,7 +57,7 @@ export default createStackNavigator({
         screen: Register1,
         navigationOptions: {
             headerTintColor: 'white',
-            headerStyle: { backgroundColor: '#af2b07', borderBottomWidth: 0, },
+            headerStyle: { backgroundColor: '#7b1fa2', borderBottomWidth: 0, },
         },
 
     },
@@ -63,10 +65,42 @@ export default createStackNavigator({
         screen: Register2Stack,
         navigationOptions: {
             headerTintColor: 'white',
-            headerStyle: { backgroundColor: '#af2b07', borderBottomWidth: 0, },
+            headerStyle: { backgroundColor: '#7b1fa2', borderBottomWidth: 0, },
         },
     }
 }, {
         headerMode: 'screen',
     });
 
+export const SignedIn = createBottomTabNavigator({
+    Stats: {
+        screen: Stats,
+        navigationOptions: {
+            tabBarLabel: "Stats",
+
+        }
+    },
+    Feed: {
+        screen: Feed,
+        navigationOptions: {
+            tabBarLabel: "Feed",
+
+        }
+    }
+});
+
+export const createRootNavigator = (signedIn = false) => {
+    return createSwitchNavigator(
+        {
+            SignedIn: {
+                screen: SignedIn
+            },
+            SignedOut: {
+                screen: SignedOut
+            }
+        },
+        {
+            initialRouteName: signedIn ? "SignedIn" : "SignedOut"
+        }
+    );
+};

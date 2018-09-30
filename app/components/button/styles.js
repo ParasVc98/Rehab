@@ -1,18 +1,17 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-    button: {
-        height: 48,
 
-    },
     buttonText: {
         fontWeight: '600',
         fontSize: 20,
         paddingHorizontal: 16,
-        color: '#000000',
+        color: '#673AB7',
     },
     container: {
         height: 48,
+        width: "auto",
+
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#FFFFFF',

@@ -45,4 +45,20 @@ export const CurrencyChange = currency => ({
 export const TimeTypeChange = time => ({
     type: 'TIME_CHANGE',
     time,
-}); 
+});
+
+export const login = () => ({
+    type: 'LOGIN',
+})
+
+export const next = () => ({
+    type: 'NEXT',
+})
+
+export const submit = () => ({
+    type: 'SUBMIT',
+})
+
+export const register = () => ({
+    type: 'REGISTER',
+})

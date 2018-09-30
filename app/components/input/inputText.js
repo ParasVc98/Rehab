@@ -6,7 +6,7 @@ import styles from './styles';
 
 const InputText = ({ value, onChangeText }) => (
     <View style={styles.container}>
-        <TextInput style={styles.inputText} value={value} onChangeText={onChangeText} />
+        <TextInput underlineColorAndroid='transparent' autoCapitalize='none' style={styles.inputText} value={value} onChangeText={onChangeText} />
     </View>
 );
 
