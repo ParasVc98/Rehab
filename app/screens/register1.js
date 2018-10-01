@@ -15,6 +15,7 @@ class Register1 extends Component {
         username: PropTypes.string,
         password: PropTypes.string,
         email: PropTypes.string,
+        token: PropTypes.string,
 
     };
     handleUsernameChange = (text) => {
@@ -48,6 +49,7 @@ class Register1 extends Component {
                         }}>
                         <SButton text="Next" onPress={this.handleNextPress} />
                     </View>
+
                     <Text style={{ fontSize: 25, fontWeight: 'bold', textAlign: 'center', color: 'white' }}>Log in using:</Text>
                 </KeyboardAvoidingView>
 
@@ -59,11 +61,12 @@ const mapStateToProps = (state) => {
     const username = state.register.username;
     const password = state.register.password;
     const email = state.register.email;
-
+    const token = state.register.token;
     return {
         username,
         password,
         email,
+        token,
     };
 };
 export default connect(mapStateToProps)(Register1);

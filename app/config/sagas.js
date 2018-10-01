@@ -9,14 +9,32 @@ const getToken = headers => fetch('http://localhost:3000/token', {
     headers: headers
 });
 
-const makeToken = (username, password) => fetch('http://localhost:3000/sign_up', {
+const makeToken = (username, password, email) => fetch('http://localhost:3000/sign_up', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-        'email': username,
+        'username': username,
         'password': password,
+        'email': email,
+    }),
+});
+
+const submitData = (headers, poison, doseSize, doseType, noOfDoses, priceOfDose, currency, timePeriod, timeType, token) => fetch('http://localhost:3000/poisons', {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify({
+        'name': poison,
+        'dose_size': parseInt(doseSize),
+        'dose_type': doseType,
+        'no_of_doses': parseInt(noOfDoses),
+        'price_of_doses': parseInt(priceOfDose),
+        'currency': currency,
+        'time_period': parseInt(timePeriod),
+        'time_type': timeType,
+        'auth_token': token,
+
     }),
 });
 
@@ -28,6 +46,7 @@ function* fetchToken(action) {
         headers.append("Authorization", "Basic " + Base64.encode(username + ":" + password));
         const response = yield call(getToken, headers);
         const result = yield response.json();
+
         if (result.error) {
             yield put({ type: 'TOKEN_ERROR', error: result.error });
         } else {
@@ -44,9 +63,11 @@ function* createToken(action) {
     try {
         var username = yield select(state => state.register.username);
         var password = yield select(state => state.register.password);
-        const response = yield call(makeToken, username, password);
+        var email = yield select(state => state.register.email);
 
+        const response = yield call(makeToken, username, password, email);
         const result = yield response.json();
+
         if (result.error) {
             yield put({ type: 'TOKEN_ERROR', error: result.error });
         } else {
@@ -63,7 +84,20 @@ function* createToken(action) {
 
 
 function* sendDetails(action) {
-    yield;
+    var token = yield select(state => state.register.token);
+    var poison = yield select(state => state.register.poison);
+    var doseSize = yield select(state => state.register.doseSize);
+    var doseType = yield select(state => state.register.doseType);
+    var noOfDoses = yield select(state => state.register.noOfDoses);
+    var priceOfDose = yield select(state => state.register.priceOfDose);
+    var currency = yield select(state => state.register.currency);
+    var timePeriod = yield select(state => state.register.timePeriod);
+    var timeType = yield select(state => state.register.timeType);
+    var headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("Authorization", "Token token=" + token);
+
+    yield call(submitData, headers, poison, doseSize, doseType, noOfDoses, priceOfDose, currency, timePeriod, timeType, token);
 };
 
 export default function* rootSaga() {

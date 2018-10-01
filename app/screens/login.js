@@ -25,10 +25,7 @@ class Login extends Component {
     };
     handleLoginPress = () => {
         this.props.dispatch(login());
-        if (this.props.token === "") { }
-        else {
-            this.props.navigation.navigate('SignedIn');
-        }
+        this.props.navigation.navigate('SignedIn');
     };
 
     handleRegisterPress = () => {
@@ -52,7 +49,6 @@ class Login extends Component {
                         <SButton text="Login" onPress={this.handleLoginPress} />
 
                     </View>
-                    <Text>token: {this.props.token}</Text>
                     <Text style={{ fontSize: 25, fontWeight: 'bold', textAlign: 'center', color: 'white' }}>Not a user yet?</Text>
                     <View
                         style={{

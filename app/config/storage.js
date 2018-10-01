@@ -9,9 +9,16 @@ export const deviceStorage = {
             console.log('AsyncStorage Error: ' + error.message);
         }
     },
-    async loadJWT() {
+    async loadJWT(itemType) {
         try {
-            let token = await AsyncStorage.getItem('id_token');
+            if (itemType === "id_token") {
+                let token = await AsyncStorage.getItem('id_token');
+                return token;
+            }
+            else if (itemType === "user_id") {
+                let user = await AsyncStorage.getItem('user_id');
+                return user;
+            }
 
         } catch (error) {
             console.log('AsyncStorage Error: ' + error.message);
