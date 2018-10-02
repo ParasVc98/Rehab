@@ -1,3 +1,3 @@
-# Rehab-1
+# Rehab
 
 A habit building app
