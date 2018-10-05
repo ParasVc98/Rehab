@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
-import {Text,View} from 'react-native';
+import {Text,View,ScrollView} from 'react-native';
 import styles from './styles';
+import {Card} from 'react-native-elements';
+import {human,material,robotoWeights} from 'react-native-typography';
 
 const name = "Vyom Dutt Sharma";
 const dose_size = "5";
@@ -16,23 +18,34 @@ const lifetimeProgress = "20%";
 class Poison extends Component {
     render(){
         return(
-            <View style={styles.container}>
-            <Text style={styles.titleText}>Hi {name}, here are your stats:</Text>
 
+            <ScrollView>
+            
+            <Text style={[styles.mainText,robotoWeights.bold]}>Hi {name}, here are your stats:</Text>
 
-            <Text style={styles.secondTitleText}>WEEKLY STATS</Text>
+            <Card 
+                title='Weekly Stats' 
+                titleStyle = {styles.titleText} 
+                wrapperStyle = {styles.wrapper}
+                containerStyle={styles.container}
+                dividerStyle = {styles.divider}>
+                    <Text style = {styles.text}>In the past {time_window}, you averaged {dose_size} {dose_type} a day. </Text>
+                    <Text style = {styles.text}>You have saved {spent} {currency} this week!</Text>
+                    <Text style = {styles.text}>Your weekly progress is {weeklyProgress}.</Text>
+            </Card>
 
-            <Text style={styles.baseText}>In the past {time_window}, you averaged <Text style={styles.number}>{dose_size} </Text>{dose_type} a day.</Text>
-            <Text style = {styles.baseText}>You saved <Text style={styles.number}>{spent} </Text>{currency} this week.</Text>
-            <Text style = {styles.baseText}>Your weekly progress is <Text style={styles.number}>{weeklyProgress}.</Text></Text>
+            <Card 
+                title='Lifetime Stats'
+                titleStyle = {styles.titleText} 
+                containerStyle={styles.container}>
+                    <Text style={styles.text}>In the past {time_window}, you averaged {dose_size} {dose_type} a day. </Text>
+                    <Text style={styles.text}>You have saved {spent} {currency} till now!</Text>
+                    <Text style={styles.text}>Your lifetime progress is {lifetimeProgress}</Text>
+            </Card>
+            
+            </ScrollView>
+            
 
-
-            <Text style={styles.secondTitleText}>LIFETIME STATS</Text>
-
-            <Text style={styles.baseText}>In the past {timeLifetime}, you averaged <Text style={styles.number}>{dose_size} </Text>{dose_type} a day.</Text>
-            <Text style = {styles.baseText}>You have saved <Text style={styles.number}>{spent} </Text>{currency} till now!</Text>
-            <Text style = {styles.baseText}>Your lifetime progress is <Text style={styles.number}>{lifetimeProgress}.</Text></Text>
-            </View>
         );
     };
 }
