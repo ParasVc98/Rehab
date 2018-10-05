@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Text,View,ScrollView} from 'react-native';
 import styles from './styles';
 import {Card} from 'react-native-elements';
-import {human,material,robotoWeights} from 'react-native-typography';
+import {robotoWeights} from 'react-native-typography';
 
 const name = "Vyom Dutt Sharma";
 const dose_size = "5";
