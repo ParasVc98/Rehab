@@ -9,19 +9,24 @@ export default StyleSheet.create({
         borderWidth: 0,
         flex: 1,
         alignItems: 'flex-start',
-        backgroundColor: '#fff',
+        backgroundColor: '#F3E5F5',
         borderRadius: 4,
     },
 
-    wrapper: {
-        
+    number: {
+        fontWeight: 'bold',
+        color: '#673AB7',
+    },
+
+    divider: {
+        backgroundColor: '#000',
     },
 
     titleText: {
         textAlign: 'left',
         fontWeight: '500',
         fontSize: 24,
-        color: '#673AB7',
+        color: '#880E4F',
 
 
     },
@@ -30,6 +35,7 @@ export default StyleSheet.create({
         textAlign: 'left',
         fontWeight: '400',
         fontSize: 16,
+        marginBottom: 3,
 
     },
 
@@ -40,8 +46,8 @@ export default StyleSheet.create({
         marginLeft: 15,
         marginRight: 15,
         fontFamily: 'Roboto',
-        fontSize: 28,
-        color: 'white',
+        fontSize: 25,
+        color: '#F3E5F5',
     },
 
 });
