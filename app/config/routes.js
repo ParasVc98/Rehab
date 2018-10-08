@@ -9,8 +9,6 @@ import PoisonList from '../screens/poisons';
 import TimeList from '../screens/times';
 import Feed from '../screens/feed';
 import Stats from '../screens/stats';
-import FontAwesome from 'react-native-fontawesome';
-
 
 const Register2Stack = createStackNavigator({
     Register2: {
@@ -46,6 +44,24 @@ const Register2Stack = createStackNavigator({
         headerMode: 'none',
     }
 );
+const FeedStack = createStackNavigator({
+    Feed: {
+        screen: Feed,
+    },
+
+    PoisonList: {
+        screen: PoisonList,
+        navigationOptions: ({ navigation }) => ({
+            headerTitle: navigation.state.params.title,
+        }),
+    },
+}, {
+        mode: 'modal',
+        cardStyle: { paddingTop: StatusBar.currentHeight },
+        headerMode: 'none',
+    }
+);
+
 export const SignedOut = createStackNavigator({
     Login: {
         screen: Login,
@@ -81,7 +97,7 @@ export const SignedIn = createBottomTabNavigator({
         }
     },
     Feed: {
-        screen: Feed,
+        screen: FeedStack,
         navigationOptions: {
             tabBarLabel: "Feed",
 

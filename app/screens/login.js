@@ -5,6 +5,7 @@ import { SButton } from '../components/button';
 import { KeyboardAvoidingView, Text, View } from 'react-native';
 import { usernameChange, passwordChange, login } from '../actions/register';
 import { connect } from 'react-redux';
+import { ChairLogo } from '../components/logo';
 
 import PropTypes from 'prop-types';
 
@@ -37,9 +38,10 @@ class Login extends Component {
         return (
             <Container>
                 <KeyboardAvoidingView behavior="padding">
+                    <ChairLogo />
 
-                    <InputText value={this.props.username} onChangeText={(text) => this.handleUsernameChange(text)} />
-                    <InputText value={this.props.password} onChangeText={(text) => this.handlePasswordChange(text)} />
+                    <InputText value={this.props.username} holder="Username" onChangeText={(text) => this.handleUsernameChange(text)} />
+                    <InputText value={this.props.password} holder="Password" onChangeText={(text) => this.handlePasswordChange(text)} />
                     <View
                         style={{
                             flexDirection: 'row',

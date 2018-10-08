@@ -9,19 +9,13 @@ export const deviceStorage = {
             console.log('AsyncStorage Error: ' + error.message);
         }
     },
-    async loadJWT(itemType) {
-        try {
-            if (itemType === "id_token") {
-                let token = await AsyncStorage.getItem('id_token');
-                return token;
-            }
-            else if (itemType === "user_id") {
-                let user = await AsyncStorage.getItem('user_id');
-                return user;
-            }
 
-        } catch (error) {
-            console.log('AsyncStorage Error: ' + error.message);
+    async loadJWT() {
+        try {
+            const result = await AsyncStorage.getItem('id_token');
+            return JSON.parse(result).token;
+        } catch (err) {
+            console.error(err);
         }
     },
 
@@ -33,6 +27,8 @@ export const deviceStorage = {
         }
     }
 };
+
+
 
 export const isSignedIn = () => {
     return new Promise((resolve, reject) => {
@@ -47,3 +43,4 @@ export const isSignedIn = () => {
             .catch(err => reject(err));
     });
 };
+

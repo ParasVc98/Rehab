@@ -21,7 +21,7 @@ const makeToken = (username, password, email) => fetch('http://localhost:3000/si
     }),
 });
 
-const submitData = (headers, poison, doseSize, doseType, noOfDoses, priceOfDose, currency, timePeriod, timeType, token) => fetch('http://localhost:3000/poisons', {
+const submitData = (headers, poison, doseSize, doseType, noOfDoses, priceOfDose, currency, timePeriod, timeType) => fetch('http://localhost:3000/poisons', {
     method: 'POST',
     headers: headers,
     body: JSON.stringify({
@@ -33,7 +33,16 @@ const submitData = (headers, poison, doseSize, doseType, noOfDoses, priceOfDose,
         'currency': currency,
         'time_period': parseInt(timePeriod),
         'time_type': timeType,
-        'auth_token': token,
+
+    }),
+});
+
+const submitLog = (headers, poison, log) => fetch('http://localhost:3000/stats', {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify({
+        'dose_size': parseInt(log),
+        'poison_name': poison,
 
     }),
 });
@@ -84,7 +93,7 @@ function* createToken(action) {
 
 
 function* sendDetails(action) {
-    var token = yield select(state => state.register.token);
+    var token = yield deviceStorage.loadJWT();
     var poison = yield select(state => state.register.poison);
     var doseSize = yield select(state => state.register.doseSize);
     var doseType = yield select(state => state.register.doseType);
@@ -97,12 +106,22 @@ function* sendDetails(action) {
     headers.append("Content-Type", "application/json");
     headers.append("Authorization", "Token token=" + token);
 
-    yield call(submitData, headers, poison, doseSize, doseType, noOfDoses, priceOfDose, currency, timePeriod, timeType, token);
+    yield call(submitData, headers, poison, doseSize, doseType, noOfDoses, priceOfDose, currency, timePeriod, timeType);
+};
+function* sendLog(action) {
+    var token = yield deviceStorage.loadJWT();
+    var poison = yield select(state => state.register.poison);
+    var log = yield select(state => state.register.log);
+    var headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("Authorization", "Token token=" + token);
+    yield call(submitLog, headers, poison, log);
 };
 
 export default function* rootSaga() {
     yield takeEvery('LOGIN', fetchToken);
     yield takeEvery('NEXT', createToken);
     yield takeEvery('SUBMIT', sendDetails);
-    yield takeEvery('REGISTER', fetchToken);
+    yield takeEvery('REGISTER', fetchToken)
+    yield takeEvery('SUBMIT_LOG', sendLog);
 };

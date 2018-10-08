@@ -58,10 +58,9 @@ class Register2 extends Component {
 
     handleRegisterPress = () => {
         this.props.dispatch(register());
-        if (this.props.token === "") { }
-        else {
-            this.props.navigation.navigate('SignedIn');
-        }
+
+        this.props.navigation.navigate('SignedIn');
+
     };
     handleSubmitPress = () => {
         this.props.dispatch(submit());
@@ -98,7 +97,7 @@ class Register2 extends Component {
                             <View style={{
                                 width: '70%',
                             }}>
-                                <InputText value={this.props.doseSize} onChangeText={(text) => this.handleDoseSizeChange(text)} />
+                                <InputText value={this.props.doseSize} holder="Enter dose size" onChangeText={(text) => this.handleDoseSizeChange(text)} />
                             </View>
                             <View style={{
                                 width: '30%',
@@ -109,7 +108,7 @@ class Register2 extends Component {
                         <View style={{
                             width: '70%',
                         }}>
-                            <InputText value={this.props.noOfDoses} onChangeText={(text) => this.handleNoOfDosesChange(text)} />
+                            <InputText value={this.props.noOfDoses} holder="Enter number of doses taken in a day" onChangeText={(text) => this.handleNoOfDosesChange(text)} />
                         </View>
                         <View
                             style={{
@@ -120,7 +119,7 @@ class Register2 extends Component {
                             <View style={{
                                 width: '70%',
                             }}>
-                                <InputText value={this.props.priceOfDose} onChangeText={(text) => this.handlePriceOfDoseChange(text)} />
+                                <InputText value={this.props.priceOfDose} holder="Enter price per unit" onChangeText={(text) => this.handlePriceOfDoseChange(text)} />
                             </View>
                             <View style={{
                                 width: '30%',
@@ -137,7 +136,7 @@ class Register2 extends Component {
                             <View style={{
                                 width: '70%',
                             }}>
-                                <InputText value={this.props.timePeriod} onChangeText={(text) => this.handleTimePeriodChange(text)} />
+                                <InputText value={this.props.timePeriod} holder="Enter duration of addiction" onChangeText={(text) => this.handleTimePeriodChange(text)} />
                             </View>
                             <View style={{
                                 width: '30%',

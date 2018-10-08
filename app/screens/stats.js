@@ -1,33 +1,71 @@
 import React, { Component } from 'react';
 import { Container } from '../components/container';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Text } from 'react-native';
+import { FlatList, Text } from 'react-native';
 import { SButton } from '../components/button';
+import { getPoisons } from '../config/retrieve';
 import { deviceStorage } from '../config/storage';
+import { Poison } from '../components/poison'
+
+const mainText = {
+    marginTop: 40,
+    marginBottom: 20,
+    textAlign: 'left',
+    marginLeft: 15,
+    marginRight: 15,
+    fontSize: 25,
+    color: '#F3E5F5',
+};
+
 
 class Stats extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { poisons: [], refreshing: true };
+        this.fetchPoisons = this.fetchPoisons.bind(this);
+    }
+    // Called after a component is mounted
+    componentDidMount() {
+        setTimeout(() => {
+            this.fetchPoisons();
+        }, 1000);
+    }
+
+    fetchPoisons() {
+        getPoisons()
+            .then(poisons => this.setState({ poisons, refreshing: false }))
+            .catch(() => this.setState({ refreshing: false }));
+    }
+
+    handleRefresh() {
+        this.setState(
+            {
+                refreshing: true
+            },
+            () => this.fetchPoisons()
+        );
+    }
     static propTypes = {
         navigation: PropTypes.object,
     }
 
-    handleSignOutPress = () => {
-        deviceStorage.deleteJWT();
-        this.props.navigation.navigate('SignedOut');
-    };
+
 
     render() {
         return (
             <Container>
-                <Text> you logged in, these are your stats</Text>
-                <SButton text="Sign Out" onPress={this.handleSignOutPress} />
+                <Text style={mainText}>Welcome back, here are your stats:</Text>
 
+                <FlatList
+                    data={this.state.poisons}
+                    renderItem={({ item }) => <Poison poison={item} />}
+                    keyExtractor={item => item.id.toString()}
+                    refreshing={this.state.refreshing}
+                    onRefresh={this.handleRefresh.bind(this)}
+                />
             </Container>
         );
     }
 }
-const mapStateToProps = (state) => {
-    return {
-    };
-};
-export default connect(mapStateToProps)(Stats);
+
+export default Stats;

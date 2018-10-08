@@ -1,19 +1,20 @@
 const initialState = {
-    username: 'username',
-    password: 'password',
-    email: 'email-ID',
+    username: '',
+    password: '',
+    email: '',
     token: '',
     error: null,
 
     poison: '                                 None                                  ',
-    doseSize: 'Enter dose size',
+    doseSize: '',
     doseType: 'pieces',
-    noOfDoses: 'Enter number of doses taken in a day',
-    priceOfDose: 'Enter price of 1 dose',
+    noOfDoses: '',
+    priceOfDose: '',
     currency: 'rupees',
-    timePeriod: 'Enter duration of addiction',
+    timePeriod: '',
     timeType: 'years',
 
+    log: '',
 };
 
 export default (state = initialState, action) => {
@@ -74,6 +75,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 timeType: action.time,
+            }
+        case 'LOG':
+            return {
+                ...state,
+                log: action.text,
             }
         case 'TOKEN_RESULT':
             return {

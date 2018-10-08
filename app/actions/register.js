@@ -47,18 +47,25 @@ export const TimeTypeChange = time => ({
     time,
 });
 
+
 export const login = () => ({
     type: 'LOGIN',
 })
-
 export const next = () => ({
     type: 'NEXT',
 })
-
 export const submit = () => ({
     type: 'SUBMIT',
 })
-
 export const register = () => ({
     type: 'REGISTER',
+})
+
+export const LogChange = text => ({
+    type: 'LOG',
+    text,
+});
+
+export const sublog = () => ({
+    type: 'SUBMIT_LOG',
 })

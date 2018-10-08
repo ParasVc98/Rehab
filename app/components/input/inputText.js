@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { TextInput, View } from 'react-native';
 import styles from './styles';
 
-const InputText = ({ value, onChangeText }) => (
+const InputText = ({ value, onChangeText, holder }) => (
     <View style={styles.container}>
-        <TextInput underlineColorAndroid='transparent' autoCapitalize='none' style={styles.inputText} value={value} onChangeText={onChangeText} />
+        <TextInput underlineColorAndroid='transparent' autoCapitalize='none' style={styles.inputText} value={value} onChangeText={onChangeText} placeholder={holder} />
     </View>
 );
 
