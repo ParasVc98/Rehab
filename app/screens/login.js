@@ -51,7 +51,6 @@ class Login extends Component {
                         <SButton text="Login" onPress={this.handleLoginPress} />
 
                     </View>
-                    <Text style={{ fontSize: 25, fontWeight: 'bold', textAlign: 'center', color: 'white' }}>Not a user yet?</Text>
                     <View
                         style={{
                             flexDirection: 'row',

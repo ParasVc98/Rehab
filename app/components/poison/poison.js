@@ -35,7 +35,7 @@ class Poison extends Component {
                 <Text style={styles.text}>You had already spent <Text style={styles.number}>{spent} {currency}</Text> on <Text style={styles.number}> {total} {dose_type} </Text>of {name} when you joined us!{"\n"}</Text>
                 <Text style={styles.text}>But in the past 5 days, you averaged <Text style={styles.number}>{avg_value} {dose_type}</Text> of {name} a day. </Text>
                 <Text style={styles.text}>You saved <Text style={styles.number}>{saved} {currency}</Text> on {name} in those 5 days.{"\n"}</Text>
-                <Text style={styles.text}>Your daily progress is <Text style={styles.number}>{progress}</Text>.</Text>
+                <Text style={styles.text}>Your daily progress is <Text style={styles.number}>{progress * 100}</Text>.</Text>
             </Card >
 
 

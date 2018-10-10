@@ -58,9 +58,7 @@ class Register2 extends Component {
 
     handleRegisterPress = () => {
         this.props.dispatch(register());
-
         this.props.navigation.navigate('SignedIn');
-
     };
     handleSubmitPress = () => {
         this.props.dispatch(submit());
@@ -71,8 +69,7 @@ class Register2 extends Component {
             <Container>
                 <KeyboardAvoidingView behavior="padding">
 
-                    <Text style={{ fontSize: 25, fontWeight: 'bold', textAlign: 'center', color: 'white' }}>What is your poison?</Text>
-                    <Text style={{ fontSize: 15, fontWeight: 'normal', textAlign: 'center', color: 'white' }}>(Fill the form corresponding to each and press submit)</Text>
+                    <Text style={{ fontSize: 25, textAlign: 'center', color: 'white' }}>What is your poison?</Text>
 
                     <View
                         style={{

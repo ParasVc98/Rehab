@@ -51,8 +51,6 @@ class Register1 extends Component {
                         }}>
                         <SButton text="Next" onPress={this.handleNextPress} />
                     </View>
-
-                    <Text style={{ fontSize: 25, fontWeight: 'bold', textAlign: 'center', color: 'white' }}>Log in using:</Text>
                 </KeyboardAvoidingView>
 
             </Container>

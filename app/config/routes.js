@@ -1,4 +1,5 @@
 import { StatusBar } from 'react-native';
+import React from 'react';
 import { createStackNavigator, createBottomTabNavigator, createSwitchNavigator } from 'react-navigation';
 import Login from '../screens/login';
 import Register1 from '../screens/register1';
@@ -9,7 +10,7 @@ import PoisonList from '../screens/poisons';
 import TimeList from '../screens/times';
 import Feed from '../screens/feed';
 import Stats from '../screens/stats';
-
+import { Ionicons } from '@expo/vector-icons';
 const Register2Stack = createStackNavigator({
     Register2: {
         screen: Register2,
@@ -92,18 +93,30 @@ export const SignedIn = createBottomTabNavigator({
     Stats: {
         screen: Stats,
         navigationOptions: {
-            tabBarLabel: "Stats",
+            tabBarIcon: <Ionicons name="md-pulse" size={32} color="white" />
 
         }
     },
     Feed: {
         screen: FeedStack,
         navigationOptions: {
-            tabBarLabel: "Feed",
+            tabBarIcon: <Ionicons name="md-calendar" size={32} color="white" />
 
         }
     }
-});
+},
+    {
+        tabBarOptions: {
+            style: {
+                backgroundColor: '#7b1fa2',
+                borderTopWidth: 0,
+            },
+
+            showLabel: false,
+            activeBackgroundColor: '#673AB7',
+        }
+    }
+);
 
 export const createRootNavigator = (signedIn = false) => {
     return createSwitchNavigator(

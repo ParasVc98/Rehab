@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { Container } from '../components/container';
 import PropTypes from 'prop-types';
-import { FlatList, Text } from 'react-native';
-import { SButton } from '../components/button';
+import { FlatList, Text, Alert } from 'react-native';
 import { getPoisons } from '../config/retrieve';
 import { deviceStorage } from '../config/storage';
 import { Poison } from '../components/poison'
+import { SignOutButton } from '../components/signOutButton';
 
 const mainText = {
-    marginTop: 40,
-    marginBottom: 20,
+    marginTop: 60,
+    marginBottom: 10,
     textAlign: 'left',
     marginLeft: 15,
     marginRight: 15,
@@ -45,6 +45,22 @@ class Stats extends Component {
             () => this.fetchPoisons()
         );
     }
+
+    handleSignOutPress = () => {
+        Alert.alert(
+            'Sign Out',
+            'Are you sure you want to sign out?',
+            [
+                {
+                    text: 'Yes', onPress: () => {
+                        deviceStorage.deleteJWT();
+                        this.props.navigation.navigate('SignedOut');
+                    }
+                },
+                { text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },]);
+
+    }
+
     static propTypes = {
         navigation: PropTypes.object,
     }
@@ -54,6 +70,7 @@ class Stats extends Component {
     render() {
         return (
             <Container>
+                <SignOutButton onPress={this.handleSignOutPress} />
                 <Text style={mainText}>Welcome back, here are your stats:</Text>
 
                 <FlatList

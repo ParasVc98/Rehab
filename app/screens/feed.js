@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 import { Container } from '../components/container';
 import PropTypes from 'prop-types';
-import { Text } from 'react-native';
+import { Text, Alert } from 'react-native';
 import { deviceStorage } from '../config/storage';
 import { SButton } from '../components/button';
 import { InputText } from '../components/input';
 import { connect } from 'react-redux';
 import { sublog, LogChange } from '../actions/register';
+import { SignOutButton } from '../components/signOutButton';
 
+const textStyle = {
+    fontSize: 25,
+    color: 'white',
+    marginBottom: 15,
+};
 
 class Feed extends Component {
     static propTypes = {
@@ -17,8 +23,18 @@ class Feed extends Component {
         poison: PropTypes.string,
     }
     handleSignOutPress = () => {
-        deviceStorage.deleteJWT();
-        this.props.navigation.navigate('SignedOut');
+        Alert.alert(
+            'Sign Out',
+            'Are you sure you want to sign out?',
+            [
+                {
+                    text: 'Yes', onPress: () => {
+                        deviceStorage.deleteJWT();
+                        this.props.navigation.navigate('SignedOut');
+                    }
+                },
+                { text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },]);
+
     };
     handleSubmitPress = () => {
         this.props.dispatch(sublog());
@@ -35,12 +51,13 @@ class Feed extends Component {
     render() {
         return (
             <Container>
-                <Text> choose your poison and enter your today's consumption and press submit {this.props.log} {this.props.poison}</Text>
+                <SignOutButton onPress={this.handleSignOutPress} />
+
+                <Text style={textStyle}>Daily Log</Text>
                 <SButton text={this.props.poison} onPress={this.handlePoisonPress} />
 
                 <InputText value={this.props.log} holder="Enter today's consumption" onChangeText={(text) => this.handleLogChange(text)} />
-                <SButton text="                                 Submit                              " onPress={this.handleSubmitPress} />
-                <SButton text="Sign Out" onPress={this.handleSignOutPress} />
+                <SButton text="                                Submit                             " onPress={this.handleSubmitPress} />
             </Container>
         );
     }
