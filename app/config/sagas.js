@@ -5,11 +5,11 @@ import { deviceStorage } from './storage';
 // at next (sends username and password->create token)      {register1}
 // at submit (send form details corresponding to each drug) {register2}
 // at register (fetch token)                                {register2}
-const getToken = headers => fetch('http://localhost:3000/token', {
+const getToken = headers => fetch('https://rehabparas.herokuapp.com/token', {
     headers: headers
 });
 
-const makeToken = (username, password, email) => fetch('http://localhost:3000/sign_up', {
+const makeToken = (username, password, email) => fetch('https://rehabparas.herokuapp.com/sign_up', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
@@ -21,7 +21,7 @@ const makeToken = (username, password, email) => fetch('http://localhost:3000/si
     }),
 });
 
-const submitData = (headers, poison, doseSize, doseType, noOfDoses, priceOfDose, currency, timePeriod, timeType) => fetch('http://localhost:3000/poisons', {
+const submitData = (headers, poison, doseSize, doseType, noOfDoses, priceOfDose, currency, timePeriod, timeType) => fetch('https://rehabparas.herokuapp.com/poisons', {
     method: 'POST',
     headers: headers,
     body: JSON.stringify({
@@ -37,7 +37,7 @@ const submitData = (headers, poison, doseSize, doseType, noOfDoses, priceOfDose,
     }),
 });
 
-const submitLog = (headers, poison, log) => fetch('http://localhost:3000/stats', {
+const submitLog = (headers, poison, log) => fetch('https://rehabparas.herokuapp.com/stats', {
     method: 'POST',
     headers: headers,
     body: JSON.stringify({

@@ -2,7 +2,7 @@ import { deviceStorage } from './storage';
 
 
 export async function getPoisons() {
-    const url = "http://localhost:3000/users";
+    const url = "https://rehabparas.herokuapp.com/users";
     var token = await deviceStorage.loadJWT();
     var headers = new Headers();
     headers.append("Authorization", "Token token=" + token);
