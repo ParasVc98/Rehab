@@ -28,7 +28,7 @@ class Stats extends Component {
     componentDidMount() {
         setTimeout(() => {
             this.fetchPoisons();
-        }, 1000);
+        }, 8000);
     }
 
     fetchPoisons() {
