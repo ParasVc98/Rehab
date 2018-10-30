@@ -1,18 +1,18 @@
-import { View, TouchableOpacity, Image } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Icon } from 'react-native-elements';
 import styles from './styles'
 
-const SignOutButton = ({ onPress }) => (
+const AddButton = ({ onPress }) => (
     <View style={styles.container}>
         <TouchableOpacity style={styles.button} onPress={onPress}>
-            <Icon name='md-exit' type='ionicon' iconStyle={styles.icon} />
+            <Icon name='ios-add-circle-outline' type='ionicon' size={40} iconStyle={styles.icon} />
         </TouchableOpacity>
     </View>
 );
-SignOutButton.propTypes = {
+AddButton.propTypes = {
     onPress: PropTypes.func,
 };
 
-export default SignOutButton;
+export default AddButton;

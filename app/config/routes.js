@@ -4,6 +4,7 @@ import { createStackNavigator, createBottomTabNavigator, createSwitchNavigator }
 import Login from '../screens/login';
 import Register1 from '../screens/register1';
 import Register2 from '../screens/register2';
+import Add from '../screens/add';
 import CurrencyList from '../screens/currencies';
 import DoseList from '../screens/doses';
 import PoisonList from '../screens/poisons';
@@ -45,9 +46,47 @@ const Register2Stack = createStackNavigator({
         headerMode: 'none',
     }
 );
+const addStack = createStackNavigator({
+    Add: {
+        screen: Add,
+    },
+    CurrencyList: {
+        screen: CurrencyList,
+        navigationOptions: ({ navigation }) => ({
+            headerTitle: navigation.state.params.title,
+        }),
+    },
+    DoseList: {
+        screen: DoseList,
+        navigationOptions: ({ navigation }) => ({
+            headerTitle: navigation.state.params.title,
+        }),
+    },
+    PoisonList: {
+        screen: PoisonList,
+        navigationOptions: ({ navigation }) => ({
+            headerTitle: navigation.state.params.title,
+        }),
+    },
+    TimeList: {
+        screen: TimeList,
+        navigationOptions: ({ navigation }) => ({
+            headerTitle: navigation.state.params.title,
+        }),
+    }
+}, {
+        mode: 'modal',
+        cardStyle: { paddingTop: StatusBar.currentHeight },
+        headerMode: 'none',
+    }
+);
 const FeedStack = createStackNavigator({
     Feed: {
         screen: Feed,
+    },
+
+    Add: {
+        screen: addStack,
     },
 
     PoisonList: {
@@ -56,6 +95,8 @@ const FeedStack = createStackNavigator({
             headerTitle: navigation.state.params.title,
         }),
     },
+
+
 }, {
         mode: 'modal',
         cardStyle: { paddingTop: StatusBar.currentHeight },

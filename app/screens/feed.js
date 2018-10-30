@@ -8,6 +8,7 @@ import { InputText } from '../components/input';
 import { connect } from 'react-redux';
 import { sublog, LogChange } from '../actions/register';
 import { SignOutButton } from '../components/signOutButton';
+import { AddButton } from '../components/addButton';
 
 const textStyle = {
     fontSize: 25,
@@ -48,6 +49,11 @@ class Feed extends Component {
         navigation.navigate('PoisonList', { title: 'Poisons' });
     };
 
+    handleAddPress = () => {
+        const { navigation } = this.props;
+        navigation.navigate('Add');
+    };
+
     render() {
         return (
             <Container>
@@ -58,6 +64,7 @@ class Feed extends Component {
 
                 <InputText value={this.props.log} holder="Enter today's consumption" onChangeText={(text) => this.handleLogChange(text)} />
                 <SButton text="                                Submit                             " onPress={this.handleSubmitPress} />
+                <AddButton onPress={this.handleAddPress} />
             </Container>
         );
     }
