@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text } from 'react-native';
 import styles from './styles';
+import { ProgressCircle } from 'react-native-svg-charts'
 import { Card } from 'react-native-elements';
 
 class Poison extends Component {
@@ -36,6 +37,15 @@ class Poison extends Component {
                 <Text style={styles.text}>But in the past 5 days, you averaged <Text style={styles.number}>{avg_value} {dose_type}</Text> of {name} a day. </Text>
                 <Text style={styles.text}>You saved <Text style={styles.number}>{saved} {currency}</Text> on {name} in those 5 days.{"\n"}</Text>
                 <Text style={styles.text}>Your daily progress is <Text style={styles.number}>{progress * 100}</Text>.</Text>
+                <ProgressCircle
+                    style={{
+                        paddingTop: 7,
+                        height: 150
+                    }}
+                    progress={progress}
+                    progressColor={'rgb(134, 65, 244)'}
+                    backgroundColor={'#ffadf6'}
+                />
             </Card >
 
 
