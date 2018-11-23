@@ -11,6 +11,8 @@ import PoisonList from '../screens/poisons';
 import TimeList from '../screens/times';
 import Feed from '../screens/feed';
 import Stats from '../screens/stats';
+import Award from '../screens/awards';
+
 import { Ionicons } from '@expo/vector-icons';
 const Register2Stack = createStackNavigator({
     Register2: {
@@ -144,9 +146,19 @@ export const SignedIn = createBottomTabNavigator({
             tabBarIcon: <Ionicons name="md-calendar" size={32} color="white" />
 
         }
+    },
+    Awards: {
+        screen: Award,
+        navigationOptions: {
+            tabBarIcon: <Ionicons name="md-medal" size={32} color="white" />
+
+        }
     }
+
 },
     {
+        order: ['Feed', 'Stats', 'Awards'],
+        initialRouteName: 'Stats',
         tabBarOptions: {
             style: {
                 backgroundColor: '#7b1fa2',

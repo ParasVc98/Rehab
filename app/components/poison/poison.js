@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 import styles from './styles';
-import { ProgressCircle } from 'react-native-svg-charts'
+import { ProgressCircle, LineChart, YAxis, Grid } from 'react-native-svg-charts'
 import { Card } from 'react-native-elements';
 
 class Poison extends Component {
@@ -21,7 +21,11 @@ class Poison extends Component {
             counter,
             spent,
             total,
+            stats,
         } = this.props.poison;
+        let result = stats.map(a => a.dose_size);
+
+
         const old_avg = no_of_doses * dose_size;
         const saved = ((old_avg - avg_value) * price_of_doses);
         return (
@@ -46,6 +50,28 @@ class Poison extends Component {
                     progressColor={'rgb(134, 65, 244)'}
                     backgroundColor={'#ffadf6'}
                 />
+                <View style={{ height: 200, flexDirection: 'row' }}>
+                    <YAxis
+                        data={result}
+                        contentInset={{ top: 20, bottom: 20 }}
+                        svg={{
+                            fill: 'grey',
+                            fontSize: 10,
+                        }}
+                        numberOfTicks={10}
+                        formatLabel={value => `${value} ${dose_type}`}
+                    />
+                    <LineChart
+                        style={{ flex: 1, marginLeft: 16 }}
+                        data={result}
+                        svg={{
+                            stroke: 'rgb(134, 65, 244)',
+                            strokeWidth: 2.5
+                        }}
+                        contentInset={{ top: 20, bottom: 20 }}
+                    >
+                    </LineChart>
+                </View>
             </Card >
 
 
