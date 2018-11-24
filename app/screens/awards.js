@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
 import { Container } from '../components/container';
 import PropTypes from 'prop-types';
-import { FlatList, Text, Alert } from 'react-native';
+import { FlatList, Text, Alert, View } from 'react-native';
 import { getPoisons } from '../config/retrieve';
 import { deviceStorage } from '../config/storage';
 import { Trophy } from '../components/trophy'
@@ -10,7 +10,6 @@ import { SignOutButton } from '../components/signOutButton';
 const mainText = {
     marginTop: 60,
     marginBottom: 10,
-    textAlign: 'left',
     marginLeft: 15,
     marginRight: 15,
     fontSize: 25,
@@ -71,7 +70,9 @@ class Award extends Component {
         return (
             <Container>
                 <SignOutButton onPress={this.handleSignOutPress} />
+                <View style={{alignItems: 'center'}}>
                 <Text style={mainText}>Here are your achievements:</Text>
+                </View>
 
                 <FlatList
                     horizontal

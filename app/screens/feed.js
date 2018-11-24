@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container } from '../components/container';
 import PropTypes from 'prop-types';
-import { Text, Alert, View, KeyboardAvoidingView } from 'react-native';
+import { Text, Alert } from 'react-native';
 import { deviceStorage } from '../config/storage';
 import { MasterButton } from '../components/masterButton';
 import { InputText } from '../components/input';
@@ -11,9 +11,9 @@ import { SignOutButton } from '../components/signOutButton';
 import { AddButton } from '../components/addButton';
 
 const textStyle = {
-    fontSize: 25,
+    fontSize: 30,
     color: 'white',
-    marginBottom: 15,
+    marginBottom: 25,
 };
 
 class Feed extends Component {
@@ -58,17 +58,12 @@ class Feed extends Component {
         return (
             <Container>
                 <SignOutButton onPress={this.handleSignOutPress} />
-                <Text style={textStyle}>Daily Log</Text>
-                <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 10 }}>
-                    <MasterButton text={this.props.poison} onPress={this.handlePoisonPress} containerViewStyle={{ width: '90%', marginRight: 0, marginLeft: 0, borderRadius: 4 }} />
-                </View>
-                <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 10 }}>
-                    <InputText value={this.props.log} holder="Enter today's consumption" onChangeText={(text) => this.handleLogChange(text)} />
-                </View>
 
-                <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 10 }}>
-                    <MasterButton text="Submit" onPress={this.handleSubmitPress} containerViewStyle={{ width: '90%', marginRight: 0, marginLeft: 0, borderRadius: 4 }} />
-                </View>
+                <Text style={textStyle}>Daily Log</Text>
+                <MasterButton text={this.props.poison} onPress={this.handlePoisonPress}  containerViewStyle={{width: '90%',marginRight: 0,marginLeft: 0, borderRadius: 4}}/>
+
+                <InputText value={this.props.log} holder="Enter today's consumption" onChangeText={(text) => this.handleLogChange(text)} />
+                <MasterButton text="Submit" onPress={this.handleSubmitPress} containerViewStyle={{width: '50%',marginRight: 0,marginLeft: 0, borderRadius: 4, marginTop: 40}} />
                 <AddButton onPress={this.handleAddPress} />
             </Container>
         );

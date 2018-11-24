@@ -29,8 +29,8 @@ export default StyleSheet.create({
     },
 
     text: {
-        textAlign: 'left',
-        fontWeight: '400',
+        textAlign: 'center',
+        fontWeight: '500',
         fontSize: 16,
         marginBottom: 3,
 

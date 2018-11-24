@@ -50,7 +50,7 @@ class Register1 extends Component {
                             marginTop: 10,
 
                         }}>
-                        <MasterButton text="Next" onPress={this.handleNextPress} containerViewStyle={{ width: '50%', marginRight: 0, marginLeft: 0, borderRadius: 4 }} />
+                        <MasterButton text="Next" onPress={this.handleNextPress} containerViewStyle={{width: '50%',marginRight: 0,marginLeft: 0, borderRadius: 4}}/>
                     </View>
                 </KeyboardAvoidingView>
 

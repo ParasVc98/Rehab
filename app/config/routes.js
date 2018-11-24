@@ -44,7 +44,7 @@ const Register2Stack = createStackNavigator({
     }
 }, {
         mode: 'modal',
-        cardStyle: { paddingTop: StatusBar.currentHeight },
+        cardStyle: { },
         headerMode: 'none',
     }
 );
@@ -101,7 +101,7 @@ const FeedStack = createStackNavigator({
 
 }, {
         mode: 'modal',
-        cardStyle: { paddingTop: StatusBar.currentHeight },
+        cardStyle: {  },
         headerMode: 'none',
     }
 );
