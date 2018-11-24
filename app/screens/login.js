@@ -6,7 +6,8 @@ import { KeyboardAvoidingView, Text, View } from 'react-native';
 import { usernameChange, passwordChange, login } from '../actions/register';
 import { connect } from 'react-redux';
 import { ChairLogo } from '../components/logo';
-
+import { MasterButton } from '../components/masterButton';
+import { Poison } from '../components/poison';
 import PropTypes from 'prop-types';
 
 
@@ -42,23 +43,11 @@ class Login extends Component {
 
                     <InputText value={this.props.username} holder="Username" onChangeText={(text) => this.handleUsernameChange(text)} />
                     <InputText value={this.props.password} holder="Password" onChangeText={(text) => this.handlePasswordChange(text)} />
-                    <View
-                        style={{
-                            flexDirection: 'row',
-                            justifyContent: 'center',
-
-                        }}>
-                        <SButton text="Login" onPress={this.handleLoginPress} />
-
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginTop: 10 }}>
+                        <MasterButton text="Login" onPress={this.handleLoginPress} containerViewStyle={{ width: '45%', marginRight: 0, marginLeft: 0, borderRadius: 4 }} />
+                        <MasterButton text="Register" onPress={this.handleRegisterPress} containerViewStyle={{ width: '45%', marginRight: 0, marginLeft: 0, borderRadius: 4 }} />
                     </View>
-                    <View
-                        style={{
-                            flexDirection: 'row',
-                            justifyContent: 'center',
 
-                        }}>
-                        <SButton text="Register" onPress={this.handleRegisterPress} />
-                    </View>
                 </KeyboardAvoidingView>
 
             </Container>

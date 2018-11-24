@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Container } from '../components/container';
 import { InputText } from '../components/input';
+import { MasterButton } from '../components/masterButton';
 import { SButton } from '../components/button';
 import { KeyboardAvoidingView, Text, View } from 'react-native';
 
@@ -69,15 +70,9 @@ class Register2 extends Component {
             <Container>
                 <KeyboardAvoidingView behavior="padding">
 
-                    <Text style={{ fontSize: 25, textAlign: 'center', color: 'white' }}>What is your poison?</Text>
-
-                    <View
-                        style={{
-                            marginTop: '3%',
-                            flexDirection: 'row',
-                            justifyContent: 'center',
-                        }}>
-                        <SButton text={this.props.poison} onPress={this.handlePoisonPress} />
+                    <Text style={{ fontSize: 25, textAlign: 'center', color: 'white', marginBottom: 20 }}>What is your poison?</Text>
+                    <View style={{ justifyContent: 'center', marginVertical: 10, alignItems: 'center' }}>
+                        <MasterButton text={this.props.poison} onPress={this.handlePoisonPress} containerViewStyle={{ width: '90%', marginRight: 0, marginLeft: 0, borderRadius: 4 }} />
                     </View>
                     <View style={{
                         marginTop: '2%',
@@ -142,23 +137,11 @@ class Register2 extends Component {
                             </View>
                         </View>
                     </View>
-                    <View
-                        style={{
-                            flexDirection: 'row',
-                            justifyContent: 'center',
-                            marginBottom: '7%',
-
-
-                        }}>
-                        <SButton text="                                 Submit                              " onPress={this.handleSubmitPress} />
+                    <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 10 }}>
+                        <MasterButton text="Submit" onPress={this.handleSubmitPress} containerViewStyle={{ width: '90%', marginRight: 0, marginLeft: 0, borderRadius: 4 }} />
                     </View>
-                    <View
-                        style={{
-                            flexDirection: 'row',
-                            justifyContent: 'center',
-
-                        }}>
-                        <SButton text="Register" onPress={this.handleRegisterPress} />
+                    <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 20 }}>
+                        <MasterButton text="Register" onPress={this.handleRegisterPress} containerViewStyle={{ width: '50%', marginRight: 0, marginLeft: 0, borderRadius: 4 }} />
                     </View>
                 </KeyboardAvoidingView>
 

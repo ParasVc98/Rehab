@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Container } from '../components/container';
 import { InputText } from '../components/input';
-import { SButton } from '../components/button';
+import { MasterButton } from '../components/masterButton';
 import { KeyboardAvoidingView, Text, View } from 'react-native';
 import { usernameChange, passwordChange, emailChange, next } from '../actions/register';
 import { connect } from 'react-redux';
@@ -47,9 +47,10 @@ class Register1 extends Component {
                         style={{
                             flexDirection: 'row',
                             justifyContent: 'center',
+                            marginTop: 10,
 
                         }}>
-                        <SButton text="Next" onPress={this.handleNextPress} />
+                        <MasterButton text="Next" onPress={this.handleNextPress} containerViewStyle={{ width: '50%', marginRight: 0, marginLeft: 0, borderRadius: 4 }} />
                     </View>
                 </KeyboardAvoidingView>
 

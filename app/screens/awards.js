@@ -74,6 +74,7 @@ class Award extends Component {
                 <Text style={mainText}>Here are your achievements:</Text>
 
                 <FlatList
+                    horizontal
                     data={this.state.poisons}
                     renderItem={({ item }) => <Trophy poison={item} />}
                     keyExtractor={item => item.id.toString()}

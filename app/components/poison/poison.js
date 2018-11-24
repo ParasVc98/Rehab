@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import styles from './styles';
-import { ProgressCircle, LineChart, YAxis, Grid } from 'react-native-svg-charts'
+import { LineChart, YAxis, Grid } from 'react-native-svg-charts'
+import ProgressCircle from 'react-native-progress-circle';
 import { Card } from 'react-native-elements';
 
 class Poison extends Component {
@@ -36,20 +37,23 @@ class Poison extends Component {
                 wrapperStyle={styles.wrapper}
                 containerStyle={styles.container}
                 dividerStyle={styles.divider}>
+                <Text style={styles.text}>Your daily progress is: </Text>
+                <View style={{ alignItems: 'center', marginBottom: 5, marginTop: 5 }}>
+                    <ProgressCircle
+                        percent={Number(progress) * 100}
+                        radius={60}
+                        borderWidth={6}
+                        shadowColor="#CCCCCC"
+                        color="rgb(134, 65, 244)"
+                        bgColor="#F3E5F5">
+                        <Text style={styles.number}>{Math.round(progress * 100 * 100) / 100}</Text>
+                    </ProgressCircle>
+                </View>
                 <Text style={styles.text}>In the past <Text style={styles.number}>{time_period} {time_type}</Text>, you averaged <Text style={styles.number}>{old_avg} {dose_type}</Text> of {name} a day. </Text>
                 <Text style={styles.text}>You had already spent <Text style={styles.number}>{spent} {currency}</Text> on <Text style={styles.number}> {total} {dose_type} </Text>of {name} when you joined us!{"\n"}</Text>
                 <Text style={styles.text}>But in the past 5 days, you averaged <Text style={styles.number}>{avg_value} {dose_type}</Text> of {name} a day. </Text>
                 <Text style={styles.text}>You saved <Text style={styles.number}>{saved} {currency}</Text> on {name} in those 5 days.{"\n"}</Text>
-                <Text style={styles.text}>Your daily progress is <Text style={styles.number}>{progress * 100}</Text>.</Text>
-                <ProgressCircle
-                    style={{
-                        paddingTop: 7,
-                        height: 150
-                    }}
-                    progress={progress}
-                    progressColor={'rgb(134, 65, 244)'}
-                    backgroundColor={'#ffadf6'}
-                />
+
                 <View style={{ height: 200, flexDirection: 'row' }}>
                     <YAxis
                         data={result}

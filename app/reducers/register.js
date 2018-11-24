@@ -5,7 +5,7 @@ const initialState = {
     token: '',
     error: null,
 
-    poison: '                                None                                 ',
+    poison: 'None',
     doseSize: '',
     doseType: 'pieces',
     noOfDoses: '',
